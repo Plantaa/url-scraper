@@ -15,7 +15,7 @@
 <script>
     const enviar = () => {
         console.warn(JSON.stringify({"url": document.getElementById("getUrl").value}))
-        fetch("169.51.203.75:31716/scraper",
+        fetch("/scraper",
         {
             headers: {
             'Accept': 'application/json',

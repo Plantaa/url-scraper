@@ -61,21 +61,13 @@ def url_scraper():
     url = request.json["url"]
     if url:
         insert_url(url)
-        print("URL inserted: ", url)
         urls = scrape_url(url)
-        print("URLS scraped: ", urls)
         insert_urls(urls)
-        print("URLS inserted: ", urls)
         unscraped_urls = get_unscraped_urls()
-        print("Unscraped URLS: ", unscraped_urls)
         for unscraped_url in unscraped_urls:
-            print("unscraped url: ", unscraped_url)
             urls = scrape_url(unscraped_url["url"])
-            print("%d URLS scraped" %len(urls))
             insert_urls(urls)
-            print("%d URLS inserted" %len(urls))
             unscraped_urls = get_unscraped_urls()
-            print("%d Unscraped URLS" %len(unscraped_urls))
         response = {"message": "done"}
     else:
         response = {"message": "url not set"}
