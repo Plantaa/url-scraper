@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My URL Scraper</title>
+</head>
+<body>
+    <h1>Insira uma URL</h1>
+        <br>
+        <input name="url" id="getUrl" placeholder="insira uma url aqui" />
+        <button onclick="enviar()" placeholder="Enviar">enviar</button>
+</body>
+<script>
+    const enviar = () => {
+        console.warn(JSON.stringify({"url": document.getElementById("getUrl").value}))
+        fetch("http://localhost:5000/scraper",
+        {
+            headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify({"url": document.getElementById("getUrl").value})
+        })
+    }
+</script>
+</html>
