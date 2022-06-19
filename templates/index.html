@@ -11,6 +11,8 @@
         <br>
         <input name="url" id="getUrl" placeholder="insira uma url aqui" />
         <button onclick="enviar()" placeholder="Enviar">enviar</button>
+        <button onclick="listar()" placeholder="Listar banco">listar</button>
+        <div class="container"></div>
 </body>
 <script>
     const enviar = () => {
@@ -23,6 +25,24 @@
             },
             method: "POST",
             body: JSON.stringify({"url": document.getElementById("getUrl").value})
+        })
+    }
+    const listar = () => {
+        fetch("/list",
+        {
+            method: "GET"
+            
+        }).then(res => {
+            res.json().then(data => {
+                console.log(data.urls[0])
+                let html = ""
+                data.urls.map(url => {
+                    let listline = `<p>${url}</p><br/>`
+                    html += listline
+                })
+                let container = document.querySelector('.container')
+                container.innerHTML = html
+            })
         })
     }
 </script>

@@ -72,3 +72,11 @@ def url_scraper():
     else:
         response = {"message": "url not set"}
     return response
+
+@app.route("/list", methods = ["GET"])
+def list_stored_urls():
+    urls = []
+    data = collection.find({})
+    for url in data:
+        urls.append(url["url"])
+    return dict({"urls": urls})
